@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react'
-import api from '../../api/contacts'
+import api from '../../api/api'
 import Contact from './Contact'
 
 function Contacts() {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 
-export default axios.create({
+const api = axios.create({
     baseURL: 'https://my-json-server.typicode.com/theMasudRana/json-api/',
 })
+export default api

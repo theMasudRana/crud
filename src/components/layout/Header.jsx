@@ -94,10 +94,10 @@ export default function Header() {
                         </a>
                     </div>
                     <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Pricing
+                        Add New
                     </a>
                     <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Docs
+                        About
                     </a>
                     <div className="items-center justify-end md:flex md:flex-1 lg:w-0">
                         <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">

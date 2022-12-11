@@ -1,40 +1,59 @@
 
 import { useState, useEffect } from 'react'
 import api from '../../api/contacts'
+import Contact from './Contact'
 
 function Contacts() {
     const [loading, setLoading] = useState(true)
-    const [contacts, setContacts] = useState()
+    const [contacts, setContacts] = useState([])
+    const [error, setError] = useState(false)
 
+    // Get all contacts
     const getContacts = async () => {
         try {
             const response = await api.get('/contacts')
             const data = response.data
+
             setContacts(data)
             setLoading(false)
+
         } catch (error) {
-            console.log(error.message);
+            setError(error.message)
+            setLoading(false)
         }
     }
 
+    // Show all contacts in the dom
     useEffect(() => {
         getContacts()
     }, [])
 
+    // Show loading state before data fetching
     if (loading) {
         return (
-            <div className="loading-wrapper">
-                <p>Loading</p>
+            <div className="container mx-auto py-16 px-10 loading-wrapper">
+                <p>Loading.....</p>
+            </div>
+        )
+    }
+
+    // Show error message if any error happens
+    if (error) {
+        return (
+            <div className="container mx-auto py-16 px-10 loading-wrapper">
+                <p>{error}</p>
             </div>
         )
     }
 
     return (
-        <div className='contacts-wrapper'>
+        <div className='container mx-auto py-16 contacts-wrapper'>
             {contacts.map((contact) => (
-                <div className="contact-item" key={contact.id}>
-                    <p>{contact.name}</p>
-                </div>
+                <Contact
+                    key={contact.id}
+                    contactName={contact.name}
+                    contactEmail={contact.email}
+                />
             ))}
         </div>
     )

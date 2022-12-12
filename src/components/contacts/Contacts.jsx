@@ -39,6 +39,10 @@ function Contacts() {
         getContacts()
     }, [])
 
+    const deleteItem = () => {
+        console.log('Item will be deleted');
+    }
+
     // Show loading state before data fetching
     if (loading) {
         return <Loader />
@@ -59,6 +63,7 @@ function Contacts() {
                     phone={contact.phone}
                     company={contact.company}
                     website={contact.website}
+                    deleteHandler={deleteItem}
                 />
             ))}
         </div>

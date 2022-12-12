@@ -1,13 +1,12 @@
-import api from '../api/api'
-import Form from '../components/form/Form'
+import api from '../../api/api'
+import Form from '../form/Form'
 
 
-function NewContact() {
+function AddNew() {
 
     const addContact = async (contactData) => {
         try {
-            const response = await api.post('/contacts.json', contactData)
-            console.log(response)
+            await api.post('/contacts.json', contactData)
         } catch (error) {
             console.log(error.message)
         }
@@ -20,4 +19,4 @@ function NewContact() {
     )
 }
 
-export default NewContact
+export default AddNew

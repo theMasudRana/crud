@@ -1,6 +1,7 @@
-
 import { useState, useEffect } from 'react'
 import api from '../../api/api'
+import ErrorMessage from '../common/ErrorMessage'
+import Loader from '../common/Loader'
 import Contact from './Contact'
 
 function Contacts() {
@@ -40,20 +41,12 @@ function Contacts() {
 
     // Show loading state before data fetching
     if (loading) {
-        return (
-            <div className="container mx-auto py-16 px-10 loading-wrapper">
-                <p>Loading.....</p>
-            </div>
-        )
+        return <Loader />
     }
 
     // Show error message if any error happens
     if (error) {
-        return (
-            <div className="container mx-auto py-16 px-10 loading-wrapper">
-                <p>{error}</p>
-            </div>
-        )
+        return <ErrorMessage />
     }
 
     return (

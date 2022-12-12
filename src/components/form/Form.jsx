@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import UiInput from './UiInput'
 function Form({ onAddContact }) {
 
-    const firstNameRef = useRef(null);
-    const lastNameRef = useRef(null);
-    const phoneRef = useRef(null);
-    const emailRef = useRef(null);
-    const companyRef = useRef(null);
-    const websiteRef = useRef(null);
+    const firstNameRef = useRef(null)
+    const lastNameRef = useRef(null)
+    const phoneRef = useRef(null)
+    const emailRef = useRef(null)
+    const companyRef = useRef(null)
+    const websiteRef = useRef(null)
 
     const handelSubmit = (event) => {
         event.preventDefault()

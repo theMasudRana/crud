@@ -1,5 +1,4 @@
-import React from 'react'
-import api from '../api/api';
+import api from '../api/api'
 import Form from '../components/form/Form'
 
 

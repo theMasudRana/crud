@@ -1,10 +1,13 @@
 
-function Contact({ contactName, contactEmail }) {
+function Contact({ name, email, phone, company, website }) {
     return (
         <div className="border-b p-2 mb-4 flex justify-between items-center">
             <div className="content">
-                <p>{contactName}</p>
-                <p>{contactEmail}</p>
+                <p>Name: <span className="text-sm font-normal text-indigo-500">{name}</span></p>
+                <p>Email: <span className="text-sm font-normal text-indigo-500">{email}</span></p>
+                <p>Phone: <span className="text-sm font-normal text-indigo-500">{phone}</span></p>
+                <p>Company: <span className="text-sm font-normal text-indigo-500">{company}</span></p>
+                <p>Website: <span className="text-sm font-normal text-indigo-500">{website}</span></p>
             </div>
             <div className="flex gap-4">
                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-sm rounded-lg px-4 py-0 h-10 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -16,7 +19,7 @@ function Contact({ contactName, contactEmail }) {
                 </button>
                 <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
             </div>
-        </div>
+        </div >
     )
 }
 

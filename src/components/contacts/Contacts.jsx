@@ -11,10 +11,20 @@ function Contacts() {
     // Get all contacts
     const getContacts = async () => {
         try {
-            const response = await api.get('/contacts')
+            const response = await api.get('/contacts.json')
             const data = response.data
 
-            setContacts(data)
+            // Create object data into a array
+            const contactsArray = []
+            for (const key in data) {
+                const contactItem = {
+                    id: key,
+                    ...data[key]
+                }
+                contactsArray.push(contactItem)
+            }
+
+            setContacts(contactsArray)
             setLoading(false)
 
         } catch (error) {
@@ -51,8 +61,11 @@ function Contacts() {
             {contacts.map((contact) => (
                 <Contact
                     key={contact.id}
-                    contactName={contact.name}
-                    contactEmail={contact.email}
+                    name={contact.firstName + contact.lastName}
+                    email={contact.email}
+                    phone={contact.phone}
+                    company={contact.company}
+                    website={contact.website}
                 />
             ))}
         </div>

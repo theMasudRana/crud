@@ -58,7 +58,7 @@ function Contacts() {
             {contacts.map((contact) => (
                 <Contact
                     key={contact.id}
-                    name={contact.firstName + contact.lastName}
+                    name={`${contact.firstName}  ${contact.lastName}`}
                     email={contact.email}
                     phone={contact.phone}
                     company={contact.company}

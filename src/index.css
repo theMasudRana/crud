@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.contact-dark {
+    background-color: black;
+    color: #fff;
+    border-radius: 6px;
+}

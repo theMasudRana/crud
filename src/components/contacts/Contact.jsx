@@ -1,7 +1,13 @@
+import { useContext } from "react"
+import ContactContext from "../../context/ContactContext"
 
 function Contact({ name, email, phone, company, website, deleteHandler }) {
+
+    const theme = useContext(ContactContext)
+    const themeClass = 'contact-' + theme
+
     return (
-        <div className="border-b p-2 mb-4 flex justify-between items-center">
+        <div className={`border-b p-2 mb-4 flex justify-between items-center ${themeClass}`}>
             <div className="content">
                 <p>Name: <span className="text-sm font-normal text-indigo-500">{name}</span></p>
                 <p>Email: <span className="text-sm font-normal text-indigo-500">{email}</span></p>

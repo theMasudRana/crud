@@ -58,20 +58,18 @@ function Contacts() {
     }
     const themeClass = 'contact-' + theme
 
-    const handelCheck = (e) => {
-        if (e.target.checked) {
-            changeAppState('theme', 'dark')
-        } else {
-            changeAppState('theme', 'light')
-        }
-    }
 
     return (
         <div className='container mx-auto py-16 contacts-wrapper'>
             <label className='pb-14'>
                 <input
                     type="checkbox"
-                    onChange={(e) => { handelCheck(e) }}
+                    onChange={
+                        (e) => {
+                            const inputValue = e.target.checked ? 'dark' : 'light'
+                            changeAppState('theme', inputValue)
+                        }
+                    }
                 />
                 Use Dark Theme
             </label>

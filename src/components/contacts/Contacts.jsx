@@ -50,7 +50,7 @@ function Contacts() {
 
     // Show error message if any error happens
     if (error) {
-        return <ErrorMessage />
+        return <ErrorMessage error={error} />
     }
 
     return (

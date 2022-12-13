@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import api from '../../api/api'
 import ErrorMessage from '../common/ErrorMessage'
 import Loader from '../common/Loader'
 import Contact from './Contact'
+import ContactContext from '../../context/ContactContext'
 
 function Contacts() {
     const [loading, setLoading] = useState(true)
     const [contacts, setContacts] = useState([])
     const [error, setError] = useState(false)
+
+    const { state, changeAppState } = useContext(ContactContext)
+    const { theme } = state;
 
     // Get all contacts
     const getContacts = async () => {
@@ -52,9 +56,25 @@ function Contacts() {
     if (error) {
         return <ErrorMessage error={error} />
     }
+    const themeClass = 'contact-' + theme
+
+    const handelCheck = (e) => {
+        if (e.target.checked) {
+            changeAppState('theme', 'dark')
+        } else {
+            changeAppState('theme', 'light')
+        }
+    }
 
     return (
         <div className='container mx-auto py-16 contacts-wrapper'>
+            <label className='pb-14'>
+                <input
+                    type="checkbox"
+                    onChange={(e) => { handelCheck(e) }}
+                />
+                Use Dark Theme
+            </label>
             {contacts.map((contact) => (
                 <Contact
                     key={contact.id}
@@ -64,6 +84,7 @@ function Contacts() {
                     company={contact.company}
                     website={contact.website}
                     deleteHandler={deleteItem}
+                    previewClass={`${themeClass}`}
                 />
             ))}
         </div>

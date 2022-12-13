@@ -1,0 +1,8 @@
+const contactActions = {
+    CONTACT_ADDED: 'CONTACT_ADDED',
+    CONTACT_UPDATED: 'CONTACT_UPDATED',
+    CONTACT_DELETED: 'CONTACT_DELETED',
+    CHANGE_APP_STATE: 'CHANGE_APP_STATE'
+}
+
+export default contactActions

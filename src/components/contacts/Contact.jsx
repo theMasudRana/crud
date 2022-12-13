@@ -4,6 +4,7 @@ import ContactContext from "../../context/ContactContext"
 function Contact({ name, email, phone, company, website, deleteHandler }) {
 
     const theme = useContext(ContactContext)
+
     const themeClass = 'contact-' + theme
 
     return (

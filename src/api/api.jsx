@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://contactapp-54351-default-rtdb.firebaseio.com/',
+    baseURL: import.meta.env.VITE_API_BASE_URL
 })
 export default api

@@ -1,8 +1,8 @@
 
-function Contact({ name, email, phone, company, website, deleteHandler, previewClass }) {
+function Contact({ name, email, phone, company, website, deleteHandler }) {
     return (
 
-        <div className={`border-b p-2 mb-4 flex justify-between items-center + ${previewClass}`}>
+        <div className={`border-b p-2 mb-4 flex justify-between items-center`}>
             <div className="content">
                 <p>Name: <span className="text-sm font-normal text-indigo-500">{name}</span></p>
                 <p>Email: <span className="text-sm font-normal text-indigo-500">{email}</span></p>

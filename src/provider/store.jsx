@@ -1,6 +1,8 @@
 const initialState = {
-    'loading': true,
-    'error': false,
+    'isLoading': true,
+    'isError': false,
+    'errorMessage': '',
+    'contacts': [],
     'firstName': '',
     'lastName': '',
     'theme': 'light'

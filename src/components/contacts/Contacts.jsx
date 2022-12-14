@@ -6,12 +6,9 @@ import Contact from './Contact'
 import ContactContext from '../../context/ContactContext'
 
 function Contacts() {
-    const [loading, setLoading] = useState(true)
-    const [contacts, setContacts] = useState([])
-    const [error, setError] = useState(false)
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { theme } = state;
+    const { theme, isLoading, isError, errorMessage, contacts } = state;
 
     // Get all contacts
     const getContacts = async () => {
@@ -21,20 +18,21 @@ function Contacts() {
 
             // Create object data into a array
             const contactsArray = []
-            for (const key in data) {
+            for (const index in data) {
+
                 const contactItem = {
-                    id: key,
-                    ...data[key]
+                    id: index,
+                    ...data[index]
                 }
                 contactsArray.push(contactItem)
             }
-
-            setContacts(contactsArray)
-            setLoading(false)
+            changeAppState('contacts', contactsArray)
+            changeAppState('isLoading', false)
 
         } catch (error) {
-            setError(error.message)
-            setLoading(false)
+            changeAppState('isLoading', false)
+            changeAppState('isError', true)
+            changeAppState('errorMessage', error.message)
         }
     }
 
@@ -48,31 +46,17 @@ function Contacts() {
     }
 
     // Show loading state before data fetching
-    if (loading) {
+    if (isLoading) {
         return <Loader />
     }
 
     // Show error message if any error happens
-    if (error) {
-        return <ErrorMessage error={error} />
+    if (isError) {
+        return <ErrorMessage errorMessage={errorMessage} />
     }
-    const themeClass = 'contact-' + theme
-
 
     return (
         <div className='container mx-auto py-16 contacts-wrapper'>
-            <label className='pb-14'>
-                <input
-                    type="checkbox"
-                    onChange={
-                        (e) => {
-                            const inputValue = e.target.checked ? 'dark' : 'light'
-                            changeAppState('theme', inputValue)
-                        }
-                    }
-                />
-                Use Dark Theme
-            </label>
             {contacts.map((contact) => (
                 <Contact
                     key={contact.id}
@@ -82,7 +66,6 @@ function Contacts() {
                     company={contact.company}
                     website={contact.website}
                     deleteHandler={deleteItem}
-                    previewClass={`${themeClass}`}
                 />
             ))}
         </div>

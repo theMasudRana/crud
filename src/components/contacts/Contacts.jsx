@@ -4,11 +4,12 @@ import ErrorMessage from '../common/ErrorMessage'
 import Loader from '../common/Loader'
 import Contact from './Contact'
 import ContactContext from '../../context/ContactContext'
+import { createArrayOfObjects } from '../../helpers/action'
 
 function Contacts() {
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { theme, isLoading, isError, errorMessage, contacts } = state;
+    const { isLoading, isError, errorMessage, contacts } = state;
 
     // Get all contacts
     const getContacts = async () => {
@@ -17,16 +18,9 @@ function Contacts() {
             const data = response.data
 
             // Create object data into a array
-            const contactsArray = []
-            for (const index in data) {
+            const contactsData = createArrayOfObjects(data)
 
-                const contactItem = {
-                    id: index,
-                    ...data[index]
-                }
-                contactsArray.push(contactItem)
-            }
-            changeAppState('contacts', contactsArray)
+            changeAppState('contacts', contactsData)
             changeAppState('isLoading', false)
 
         } catch (error) {
@@ -40,10 +34,6 @@ function Contacts() {
     useEffect(() => {
         getContacts()
     }, [])
-
-    const deleteItem = () => {
-        console.log('Item will be deleted');
-    }
 
     // Show loading state before data fetching
     if (isLoading) {
@@ -65,7 +55,6 @@ function Contacts() {
                     phone={contact.phone}
                     company={contact.company}
                     website={contact.website}
-                    deleteHandler={deleteItem}
                 />
             ))}
         </div>

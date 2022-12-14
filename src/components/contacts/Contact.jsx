@@ -1,5 +1,10 @@
 
-function Contact({ name, email, phone, company, website, deleteHandler }) {
+function Contact({ name, email, phone, company, website }) {
+
+    const deleteItem = () => {
+        console.log('Item will be deleted');
+    }
+
     return (
 
         <div className={`border-b p-2 mb-4 flex justify-between items-center`}>
@@ -18,7 +23,7 @@ function Contact({ name, email, phone, company, website, deleteHandler }) {
                     </svg>
                     Edit
                 </button>
-                <button onClick={() => deleteHandler()} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                <button onClick={deleteItem} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
             </div>
         </div >
     )

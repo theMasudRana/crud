@@ -5,6 +5,7 @@ import Loader from '../common/Loader'
 import Contact from './Contact'
 import ContactContext from '../../context/ContactContext'
 import { createArrayOfObjects } from '../../helpers/action'
+import AddContactLink from '../common/AddContactLink'
 
 function Contacts() {
 
@@ -47,7 +48,7 @@ function Contacts() {
 
     return (
         <div className='container mx-auto py-16 contacts-wrapper'>
-            {contacts.map((contact) => (
+            {contacts.length ? contacts.map((contact) => (
                 <Contact
                     key={contact.id}
                     name={`${contact.firstName}  ${contact.lastName}`}
@@ -55,8 +56,9 @@ function Contacts() {
                     phone={contact.phone}
                     company={contact.company}
                     website={contact.website}
+                    itemId={contact.id}
                 />
-            ))}
+            )) : <AddContactLink />}
         </div>
     )
 }

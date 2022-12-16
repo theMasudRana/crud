@@ -1,6 +1,13 @@
+import Modal from "../components/common/Modal"
+
 function About() {
     return (
-        <div>About Page</div>
+        <div>About Page
+            <Modal
+                confirmText={'dfasdf'}
+                cancelText={'aaa'}
+            />
+        </div>
     )
 }
 

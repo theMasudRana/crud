@@ -6,11 +6,17 @@ import Modal from "../common/Modal";
 function Contact({ name, email, phone, company, website, itemId }) {
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { isModalOpen } = state
+    const { isModalOpen, contacts } = state
 
     const deleteItem = async () => {
         try {
             const response = await api.delete(`/contacts/${itemId}.json`)
+            if (response.status === 200) {
+                const modContact = [...contacts].filter(
+                    (contact) => contact.id !== itemId
+                )
+                changeAppState('contacts', modContact)
+            }
         } catch (error) {
             console.log(error.message);
         }
@@ -20,8 +26,8 @@ function Contact({ name, email, phone, company, website, itemId }) {
         changeAppState('isModalOpen', true)
         changeAppState('modalTitle', 'Delete Contact?')
         changeAppState('modalContent', 'This item will be deleted permanently.')
-
     }
+
 
     return (
         <>

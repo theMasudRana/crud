@@ -6,9 +6,7 @@ const initialState = {
     'modalTitle': '',
     'modalContent': '',
     'contacts': [],
-    'firstName': '',
-    'lastName': '',
-    'theme': 'light'
+    'theme': 'light',
 }
 
 export default initialState

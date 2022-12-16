@@ -1,6 +1,7 @@
 import { useRef } from 'react'
+import api from '../../api/api'
 import UiInput from './UiInput'
-function Form({ onAddContact }) {
+function Form() {
 
     const firstNameRef = useRef(null)
     const lastNameRef = useRef(null)
@@ -12,26 +13,36 @@ function Form({ onAddContact }) {
     const handelSubmit = (event) => {
         event.preventDefault()
 
-        const firstName = firstNameRef.current?.value
-        const lastName = lastNameRef.current?.value
-        const phone = phoneRef.current?.value
-        const email = emailRef.current?.value
-        const company = companyRef.current?.value
-        const website = websiteRef.current?.value
-
         const contactData = {
-            firstName,
-            lastName,
-            phone,
-            email,
-            company,
-            website
+            firstName: firstNameRef.current?.value,
+            lastName: lastNameRef.current?.value,
+            phone: phoneRef.current?.value,
+            email: emailRef.current?.value,
+            company: companyRef.current?.value,
+            website: websiteRef.current?.value
         }
 
-        onAddContact(contactData)
+        addContact(contactData)
     }
 
 
+    const addContact = async (contactData) => {
+        try {
+            const response = await api.post('/contacts.json', contactData)
+
+            if (response.status === 200) {
+                firstNameRef.current.value = ''
+                lastNameRef.current.value = ''
+                phoneRef.current.value = ''
+                emailRef.current.value = ''
+                companyRef.current.value = ''
+                websiteRef.current.value = ''
+            }
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 
     return (
         <form onSubmit={handelSubmit}>

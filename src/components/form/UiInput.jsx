@@ -1,6 +1,6 @@
 function UiInput({ type, label, inputId, placeholder, inputRef }) {
     return (
-        <div>
+        <div className="input-item">
             <label htmlFor={inputId} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
             <input
                 type={type}

@@ -3,7 +3,8 @@ import { Fragment, useContext } from 'react'
 import ContactContext from '../../context/ContactContext'
 
 
-export default function Modal({ confirmText, cancelText, confirmCallback }) {
+
+export default function Modal({ confirmText, cancelText, confirmCallback, redirectTo }) {
 
     const { state, changeAppState } = useContext(ContactContext)
     const { modalTitle, modalContent, isModalOpen } = state
@@ -60,13 +61,16 @@ export default function Modal({ confirmText, cancelText, confirmCallback }) {
                                     </div>
 
                                     <div className="flex gap-6 mt-4">
-                                        <button
-                                            type="button"
-                                            className="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                            onClick={confirmModal}
-                                        >
-                                            {confirmText}
-                                        </button>
+                                        {confirmText &&
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                onClick={confirmModal}
+                                            >
+                                                {confirmText}
+                                            </button>
+                                        }
+
                                         <button
                                             type="button"
                                             className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"

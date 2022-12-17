@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import api from '../../api/api'
-import ErrorMessage from '../common/ErrorMessage'
-import Loader from '../common/Loader'
-import Contact from './Contact'
 import ContactContext from '../../context/ContactContext'
 import { createArrayOfObjects } from '../../helpers/action'
 import AddContactLink from '../common/AddContactLink'
+import ErrorMessage from '../common/ErrorMessage'
+import Loader from '../common/Loader'
+import Contact from './Contact'
 
 function Contacts() {
 

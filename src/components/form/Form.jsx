@@ -3,10 +3,10 @@ import api from '../../api/api'
 import ContactContext from '../../context/ContactContext'
 import Modal from '../common/Modal'
 import UiInput from './UiInput'
-function Form() {
+function Form({ itemId }) {
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { modalTitle, modalContent, isModalOpen } = state
+    const { modalTitle, modalContent, isEditMode, isModalOpen } = state
 
     const firstNameRef = useRef(null)
     const lastNameRef = useRef(null)
@@ -108,7 +108,10 @@ function Form() {
                     />
 
                 </div>
-                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Contact</button>
+                {isEditMode ?
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Contact</button>
+                    : <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Contact</button>
+                }
             </form>
         </>
     )

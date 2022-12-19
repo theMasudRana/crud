@@ -1,9 +1,6 @@
-import { Popover, Switch } from '@headlessui/react'
-import { useContext } from 'react'
+import { Popover } from '@headlessui/react'
 import { Link } from 'react-router-dom'
-import ContactContext from '../../context/ContactContext'
 export default function Header() {
-    const { changeAppState } = useContext(ContactContext)
     return (
         <Popover className="relative bg-white border-b-2 border-gray-100">
             <div className="container mx-auto">
@@ -28,19 +25,6 @@ export default function Header() {
                         About
                     </Link>
                     <div className="items-center justify-end md:flex md:flex-1 lg:w-0">
-                        <label className='mr-9'>
-                            <input
-                                className='pr-2'
-                                type="checkbox"
-                                onChange={
-                                    (e) => {
-                                        const inputValue = e.target.checked ? 'dark' : 'light'
-                                        changeAppState('theme', inputValue)
-                                    }
-                                }
-                            />
-                            Use Dark Theme
-                        </label>
                         <Link to="signin" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                             Signin
                         </Link>

@@ -6,11 +6,12 @@ import AddContactLink from '../common/AddContactLink'
 import ErrorMessage from '../common/ErrorMessage'
 import Loader from '../common/Loader'
 import Contact from './Contact'
+import Form from '../form/Form'
 
 function Contacts() {
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { isLoading, isError, errorMessage, contacts } = state;
+    const { isLoading, isError, errorMessage, contacts, component, currentContactId } = state;
 
     // Get all contacts
     const getContacts = async () => {
@@ -48,17 +49,24 @@ function Contacts() {
 
     return (
         <div className='container mx-auto py-16 contacts-wrapper'>
-            {contacts.length ? contacts.map((contact) => (
-                <Contact
-                    key={contact.id}
-                    name={`${contact.firstName}  ${contact.lastName}`}
-                    email={contact.email}
-                    phone={contact.phone}
-                    company={contact.company}
-                    website={contact.website}
-                    itemId={contact.id}
-                />
-            )) : <AddContactLink />}
+            {component === 'contactList' ?
+                contacts.length ? contacts.map((contact) => (
+                    <Contact
+                        key={contact.id}
+                        name={`${contact.firstName}  ${contact.lastName}`}
+                        email={contact.email}
+                        phone={contact.phone}
+                        company={contact.company}
+                        website={contact.website}
+                        itemId={contact.id}
+                    />
+                )) : <AddContactLink />
+
+                : null
+            }
+            {component === 'editForm' && (
+                <Form contactId={currentContactId} />
+            )}
         </div>
     )
 }

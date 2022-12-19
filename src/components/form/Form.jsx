@@ -29,6 +29,19 @@ function Form({ contactId }) {
 
         addContact(contactData)
     }
+    const handelUpdate = (contactId) => {
+
+        const contactData = {
+            firstName: firstNameRef.current?.value,
+            lastName: lastNameRef.current?.value,
+            phone: phoneRef.current?.value,
+            email: emailRef.current?.value,
+            company: companyRef.current?.value,
+            website: websiteRef.current?.value
+        }
+
+        updateRequest(contactId, contactData)
+    }
 
 
     const addContact = async (contactData) => {
@@ -57,9 +70,30 @@ function Form({ contactId }) {
         }
     }
 
-    const handelUpdate = (contactId) => {
-        console.log('Data will be updated', contactId);
-        changeAppState('component', 'contactList')
+    const updateRequest = async (contactId, contactData) => {
+
+        try {
+            const response = api.put(`/contacts.json/${contactId}`, contactData)
+            if (response.status === 200) {
+                changeAppState('isModalOpen', true)
+                changeAppState('modalTitle', 'Contact Updated')
+                changeAppState('modalContent', 'Contact has been updated to the database.')
+                changeAppState('component', 'contactList')
+
+                // Reset form input fields
+                firstNameRef.current.value = ''
+                lastNameRef.current.value = ''
+                phoneRef.current.value = ''
+                emailRef.current.value = ''
+                companyRef.current.value = ''
+                websiteRef.current.value = ''
+            }
+
+        } catch (error) {
+            changeAppState('modalTitle', error.message)
+            changeAppState('modalContent', 'Please try again.')
+            changeAppState('isModalOpen', true)
+        }
     }
 
     return (
@@ -116,11 +150,13 @@ function Form({ contactId }) {
                 </div>
                 {isEditMode ?
                     <button
-                        type="submit"
-                        onClick={() => { handelUpdate(contactId) }}
+                        type="button"
+                        onClick={() => {
+                            handelUpdate(contactId)
+                        }}
                         className="btn-primary">Update Contact</button>
                     : <button
-                        type="submit"
+                        type="button"
                         onClick={handelCreate}
                         className="btn-primary">Add Contact</button>
                 }

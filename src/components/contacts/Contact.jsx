@@ -7,7 +7,7 @@ import Modal from "../common/Modal"
 function Contact({ name, email, phone, company, website, itemId }) {
 
     const { state, changeAppState } = useContext(ContactContext)
-    const { component, isEditMode, isModalOpen, contacts, currentContactId } = state
+    const { isModalOpen, contacts } = state
 
     const deleteItem = async () => {
         try {
